@@ -15,7 +15,6 @@
 
 <script>
 import axios from 'axios'
-import { useRouter } from 'vue-router';
 export default{
     name:'RegisterComponent',
     data() {
@@ -59,7 +58,7 @@ export default{
     },
     errorCallback(e){
         this.loading = false;
-        if(e.response.status)
+        if(e.response.status === 400)
         console.log(e.response.data);
     }
   },

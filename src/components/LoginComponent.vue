@@ -50,12 +50,12 @@ export default {
     successCallback(response){
         this.loading = false;
         if(response.status === 200){
-            console.log(response.data);
+            this.$router.push('/users')
         } 
     },
     errorCallback(e){
         this.loading = false
-        if(e.response.status)
+        if(e.response.status === 400)
         console.log(e.response.data);
     }
   },
