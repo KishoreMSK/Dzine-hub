@@ -14,14 +14,11 @@ const vuetify = createVuetify({
     components,
     directives,
   })
-  const options = {
-    // You can set your default options here
-};
 
 const app = createApp(App)
 app.use(vuetify)
 app.use(router)
-app.use(Toast, options);
+app.use(Toast);
 app.mount('#app')
 
 // createApp(App).use(vuetify).use(router).mount('#app')

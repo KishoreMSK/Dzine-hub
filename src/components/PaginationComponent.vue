@@ -1,13 +1,8 @@
 <template>
     <div class="page">
-    <svg-icon type="mdi" :path="left" @click="prevPage" class="prev_page"></svg-icon>
-    <v-pagination
-      v-model="pageNo"
-      class="my-4"
-      :length="length"
-      rounded="circle"
-    ></v-pagination>
-    <svg-icon type="mdi" :path="right" @click="nextPage" class="next_page"></svg-icon>
+        <svg-icon v-if="pageNo !== 1" type="mdi" :path="left" @click="prevPage" class="prev_page"></svg-icon>
+        <v-pagination v-model="pageNo" class="my-4" :length="length" rounded="circle"></v-pagination>
+        <svg-icon v-if="pageNo !== length" type="mdi" :path="right" @click="nextPage" class="next_page"></svg-icon>
     </div>
 </template>
 
@@ -17,8 +12,8 @@ import { mdiChevronLeft, mdiChevronRight } from '@mdi/js';
 export default {
     name: 'PaginationComponent',
     components: {
-    SvgIcon
-  },
+        SvgIcon
+    },
     data() {
         return {
             pageNo: 1,
@@ -29,27 +24,27 @@ export default {
     props: {
         length: Number,
     },
-    watch:{
-        pageNo:{
-             handler(newValue, oldValue){
+    watch: {
+        pageNo: {
+            handler(newValue, oldValue) {
                 this.movePage()
-             }
+            }
         }
     },
-    methods:{
-        movePage(){
+    methods: {
+        movePage() {
             this.$emit('changePage', this.pageNo)
         },
-        prevPage(){
+        prevPage() {
             console.log(this.pageNo);
-            if(this.pageNo > 1){
+            if (this.pageNo > 1) {
                 this.pageNo -= 1;
                 this.$emit('changePage', this.pageNo)
-            }            
+            }
         },
-        nextPage(){
+        nextPage() {
             console.log(this.pageNo);
-            if(this.pageNo < this.length){
+            if (this.pageNo < this.length) {
                 this.pageNo += 1;
                 this.$emit('changePage', this.pageNo)
             }
@@ -66,13 +61,17 @@ export default {
     justify-content: center;
     align-items: center;
 }
+
 li.v-pagination__prev {
     display: none;
 }
+
 li.v-pagination__next {
     display: none;
 }
-.prev_page, .next_page {
+
+.prev_page,
+.next_page {
     cursor: pointer;
 }
 </style>

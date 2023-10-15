@@ -46,9 +46,10 @@
                     <v-card-title class="updateBtn">Update User</v-card-title>
                     <span class="closeIcon" @click="closeUpdateUserDialog">X</span>
                     <v-card-text>
-                        <v-form @submit.prevent="login" class="form">
+                        <v-form @submit.prevent="submit" class="form">
                             <v-text-field v-model="name" class="name-field" label="name" disabled required></v-text-field>
-                            <v-text-field v-model="job" class="job-field" label="enter the job" required></v-text-field>
+                            <v-text-field v-model="job" class="job-field" label="enter the job" :rules="jobRules"
+                                required></v-text-field>
                             <v-btn class="updateBtn" :loading="loading" color="success" type="submit" variant="flat"
                                 rounded="lg" size="large" @click="updateUser(singleUser.id)">Update</v-btn>
                         </v-form>
@@ -57,34 +58,8 @@
             </v-container>
         </v-dialog>
     </div>
-    <div>
-
-        <!-- Delete dialog -->
-        <div class="dialog-container">
-            <v-dialog v-model="deletingUser" class="deleteDialog">
-                <v-container class="container">
-                    <v-card class="deleteCard">
-                        <span class="closeIcon" @click="closeDeleteDialog">X</span>
-                        <div class="msg-Container">
-                            <div>
-                                Are you sure you want to delete this user.?
-                            </div>
-                        </div>
-                        <div class="chips">
-                            <v-chip class="ma-2" color="red" size="x-large" text-color="white"  @click="deleteUser(singleUser.id)">
-                                Confirm
-                            </v-chip>
-
-                            <v-chip class="ma-2" color="green" size="x-large" text-color="white" @click="closeDeleteDialog">
-                                 Cancel
-                            </v-chip>
-                        </div>
-                    </v-card>
-                </v-container>
-            </v-dialog>
-        </div>
-
-    </div>
+    <AlertComponent v-if="deletingUser" message='delete this user' @handleConfirm="deleteUser"
+        @closeDialog="closeDeleteDialog" />
 </template>
 
 <script src="./CardComponent.js" />
@@ -119,11 +94,13 @@
     width: 340px;
     height: 230px;
 }
-.chips{
+
+.chips {
     display: flex;
     justify-content: center;
     padding-top: 5%;
 }
+
 .avatar {
     width: 80%;
     height: 59%;
@@ -176,6 +153,5 @@
     top: 10px;
     cursor: pointer;
     font-weight: b
-        /* padding: 5px ; */
 }
 </style>

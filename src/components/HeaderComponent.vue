@@ -1,7 +1,11 @@
 <template>
     <div class="header">
-        <strong class="flex-item-left">Hellooo users...</strong>
-        <v-btn class="flex-item-right" size="large" @click="openCreateUser">Create User</v-btn>
+        <div class="flex-item-left">
+            <strong class="heading">Employees List</strong>
+        </div>
+        <div class="flex-item-right">
+            <v-btn class="userBtn" size="large" @click="openCreateUser">Create User</v-btn>
+        </div>
         <!-- Create user dialog -->
         <div class="dialog-container">
             <v-dialog v-model="showCreateUser" class="dialog">
@@ -11,8 +15,8 @@
                         <span class="closeIcon" @click="closeCreateUserDialog">X</span>
                         <v-card-text>
                             <v-form @submit.prevent="submit" class="form">
-                                <v-text-field v-model="name" label="name" :rules="nameRules" required></v-text-field>
-                                <v-text-field v-model="job" label="job" required></v-text-field>
+                                <v-text-field v-model="name" label="Name" :rules="nameRules" required></v-text-field>
+                                <v-text-field v-model="job" label="Job" :rules="jobRules" required></v-text-field>
                                 <v-btn class="create-user" :loading="loading" color="success" type="submit" variant="flat"
                                     rounded="lg" size="large" @click="createUser">Create</v-btn>
                             </v-form>
@@ -25,7 +29,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from '../service/axios'
 import { useToast, POSITION } from "vue-toastification";
 export default {
     name: 'HeaderComponent',
@@ -42,9 +46,15 @@ export default {
             nameRules: [
                 value => {
                     if (/^[a-z.-]/i.test(value)) return true
-                    return 'Must be a valid e-mail.'
+                    return 'Name should not be empty.'
                 },
             ],
+            jobRules: [
+                value => {
+                    if (/^[a-z.-]/i.test(value)) return true
+                    return 'Job should not be empty.'
+                },
+            ]
         }
     },
     methods: {
@@ -52,28 +62,29 @@ export default {
             this.showCreateUser = true;
         },
         createUser() {
-            const payload = {
-                name: this.name,
-                job: this.job
+            if (this.name !== '' && this.job !== '') {
+                const payload = {
+                    name: this.name,
+                    job: this.job
+                }
+                this.loading = true;
+                axios.post(`/api/users`)
+                    .then((response) => {
+                        this.successCallback(response)
+                    })
+                    .catch((e) => {
+                        this.errorCallback(e)
+                    })
             }
-            this.loading = true;
-            axios.post(`https://reqres.in/api/users`)
-                .then((response) => {
-                    this.successCallback(response)
-                })
-                .catch((e) => {
-                    this.errorCallback(e)
-                })
         },
         successCallback(response) {
-            console.log(response);
             this.loading = false
             this.toast.success("User created successfully", { position: POSITION.BOTTOM_RIGHT, timeout: 3000 });
             this.closeCreateUserDialog()
         },
         errorCallback(e) {
             if (e.response.status === 400) {
-                console.log(e.response.data);
+                this.toast.error("User creation failed", { position: POSITION.BOTTOM_RIGHT, timeout: 3000 });
             }
         },
         closeCreateUserDialog() {
@@ -87,6 +98,7 @@ export default {
      display: flex;
      font-size: x-large;
      font-weight: bold;
+     margin-top: 5%;
  }
 
  .create-user {
@@ -96,12 +108,29 @@ export default {
  .flex-item-left {
      padding: 10px;
      flex: 50%;
+     position: relative;
  }
 
  .flex-item-right {
-     background-color: #b7e6b4;
      margin-right: 5%;
      flex: 1%;
+     position: relative;
+ }
+
+ .userBtn {
+     position: absolute;
+     right: 10%;
+     font-family: serif;
+     font-size: medium;
+     font-weight: bold;
+     background-color: azure;
+ }
+
+ .heading {
+     position: absolute;
+     left: 7%;
+     font-family: math;
+     color: crimson;
  }
 
  .dialog-container {
