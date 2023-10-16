@@ -33,9 +33,8 @@
 }
 </style>
 <script>
-import AlertComponent from './alertcomponent.vue'
 import { useToast, POSITION } from 'vue-toastification'
-
+import AlertComponent from './AlertComponent.vue'
 export default {
     name: 'NavbarComponent',
     setup() {
