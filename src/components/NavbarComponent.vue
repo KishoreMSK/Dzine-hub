@@ -24,7 +24,7 @@
     font-size: large;
 }
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 460px) {
 
     .title,
     .logout {

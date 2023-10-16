@@ -170,12 +170,13 @@ export default {
      .heading {
          width: 100%;
          margin-top: 5%;
+         margin-left: 20%;
      }
 
      .userBtn {
-         width: 100%;
+         width: 240px;
          margin-top: 50%;
-         margin-right: 215px;
+         margin-right: 100%;
          font-size: revert;
      }
 
@@ -197,7 +198,7 @@ export default {
      .userBtn {
          width: 100%;
          margin-top: 65%;
-         margin-right: 130px;
+         margin-right: 100%;
          font-size: x-small;
      }
 
