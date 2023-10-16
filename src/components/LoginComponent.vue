@@ -37,6 +37,9 @@ export default {
       loading: false
     };
   },
+  created() {
+        sessionStorage.setItem('isAuth', false)
+    },
   methods: {
     login() {
       if (/^[a-z.-]+@[a-z.-]+\.[a-z]+$/i.test(this.email)) {
@@ -58,9 +61,8 @@ export default {
       this.loading = false;
       if (response.status === 200) {
         this.toast.success("Login successful", { position: POSITION.BOTTOM_RIGHT, timeout: 2000 })
-        this.$router.push('/users')
         sessionStorage.setItem("isAuth", true)
-        // this.$store.dispatch('updateAccessToken', response.data.token)
+        this.$router.push('/users')
       }
     },
     errorCallback(e) {

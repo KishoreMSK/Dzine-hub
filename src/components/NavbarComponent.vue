@@ -33,7 +33,7 @@
 }
 </style>
 <script>
-import AlertComponent from './AlertComponent.vue';
+import AlertComponent from './alertcomponent.vue'
 import { useToast, POSITION } from 'vue-toastification'
 
 export default {
@@ -51,12 +51,9 @@ export default {
             isAuthenticated: false
         }
     },
-    created() {
-        sessionStorage.setItem('isAuth', null)
-    },
     watch: {
         $route(to, from) {
-            this.isAuthenticated = sessionStorage?.getItem('isAuth');
+            this.isAuthenticated = JSON.parse(sessionStorage.getItem('isAuth'));
         }
     },
 
@@ -69,8 +66,8 @@ export default {
         },
         handleConfirm(value) {
             this.logoutUser = value;
-            this.toast.success("Logged out successfully", { position: POSITION.BOTTOM_RIGHT, timeout: 2000 })
             sessionStorage.clear();
+            this.toast.success("Logged out successfully", { position: POSITION.BOTTOM_RIGHT, timeout: 2000 })
             this.$router.push('/')
         }
     }

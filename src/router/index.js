@@ -8,8 +8,8 @@ const routes = [
     name: "LoginComponent",
     component: LoginComponent,
     beforeEnter: (to, from, next) => {
-      const isAuthenticated = sessionStorage.getItem("isAuth");
-      if (isAuthenticated === null) {
+      const isAuthenticated = JSON.parse(sessionStorage.getItem("isAuth"))
+      if (!isAuthenticated) {
         next();
       } else {
         next({ name: "UserComponent" });
@@ -21,8 +21,8 @@ const routes = [
     name: "RegisterComponent",
     component: RegisterComponent,
     beforeEnter: (to, from, next) => {
-      const isAuthenticated = sessionStorage.getItem("isAuth");
-      if (isAuthenticated === null) {
+      const isAuthenticated = JSON.parse(sessionStorage.getItem("isAuth"));
+      if (!isAuthenticated) {
         next();
       } else {
         next({ name: "UserComponent" });
@@ -34,7 +34,7 @@ const routes = [
     name: "UserComponent",
     component: UserComponent,
     beforeEnter: (to, from, next) => {
-      const isAuthenticated = sessionStorage.getItem("isAuth");
+      const isAuthenticated = JSON.parse(sessionStorage.getItem("isAuth"));
       if (isAuthenticated) {
         next();
       } else {
