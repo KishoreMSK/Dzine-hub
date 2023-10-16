@@ -36,14 +36,12 @@ export default {
             this.$emit('changePage', this.pageNo)
         },
         prevPage() {
-            console.log(this.pageNo);
             if (this.pageNo > 1) {
                 this.pageNo -= 1;
                 this.$emit('changePage', this.pageNo)
             }
         },
         nextPage() {
-            console.log(this.pageNo);
             if (this.pageNo < this.length) {
                 this.pageNo += 1;
                 this.$emit('changePage', this.pageNo)

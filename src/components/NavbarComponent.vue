@@ -5,7 +5,7 @@
                 <v-img gradient="to top right, rgba(19,84,122,.8), rgba(128,208,199,.8)"></v-img>
             </template>
             <v-app-bar-title class="title">Employee Management System</v-app-bar-title>
-            <v-btn v-if="checkIsAuth" class="logout" @click="logout">Logout</v-btn>
+            <v-btn v-if="isAuthenticated" class="logout" @click="logout">Logout</v-btn>
         </v-app-bar>
     </v-layout>
     <AlertComponent v-if="logoutUser" message='logout' @handleConfirm="handleConfirm" @closeDialog="closeDialog" />
@@ -22,6 +22,14 @@
     font-style: italic;
     font-family: emoji;
     font-size: large;
+}
+
+@media screen and (max-width: 420px) {
+
+    .title,
+    .logout {
+        font-size: medium;
+    }
 }
 </style>
 <script>
@@ -40,22 +48,21 @@ export default {
     data() {
         return {
             logoutUser: false,
-            // isAuthenticated: ;
+            isAuthenticated: false
         }
     },
-    computed:{
-        checkIsAuth(){
-            console.log(sessionStorage.getItem('isAuth'))
-            return sessionStorage.getItem('isAuth');
+    created() {
+        sessionStorage.setItem('isAuth', null)
+    },
+    watch: {
+        $route(to, from) {
+            this.isAuthenticated = sessionStorage?.getItem('isAuth');
         }
     },
-    // mounted(){
-    //     this.isAuthenticated = sessionStorage.getItem('isAuth');
-    // },
+
     methods: {
         logout() {
             this.logoutUser = true;
-            console.log(this.logoutUser);
         },
         closeDialog(value) {
             this.logoutUser = value;

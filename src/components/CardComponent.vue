@@ -1,13 +1,15 @@
 <template>
-    <v-card class="content" max-width="444" @click="getSingleUser(user.id)">
-        <img :src="user.avatar" class="avatar" />
-        <v-card-title>
-            {{ user.first_name }} {{ user.last_name }}
-        </v-card-title>
-        <v-text>
-            {{ user.email }}
-        </v-text>
-    </v-card>
+    <div class="card-container">
+        <v-card class="content" max-width="444" @click="getSingleUser(user.id)">
+            <img :src="user.avatar" class="avatar" />
+            <v-card-title>
+                {{ user.first_name }} {{ user.last_name }}
+            </v-card-title>
+            <v-text>
+                {{ user.email }}
+            </v-text>
+        </v-card>
+    </div>
     <!-- show single user dialog -->
     <div v-if="showDialog" class="dialog-container">
         <v-dialog v-model="showDialog" class="dialog">
@@ -65,6 +67,12 @@
 <script src="./CardComponent.js" />
 
 <style scoped>
+@media screen and (max-width: 620px) {
+    .card-container {
+        margin-top: 20%
+    }
+}
+
 .content {
     width: 300px;
     margin: 20px;
@@ -153,5 +161,19 @@
     top: 10px;
     cursor: pointer;
     font-weight: b
+}
+
+@media screen and (max-width: 420px) {
+    .container {
+        width: 365px;
+    }
+
+    .userCard {
+        margin-right: 5%;
+    }
+
+    .updateBtn {
+        margin-left: 90px;
+    }
 }
 </style>

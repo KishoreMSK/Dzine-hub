@@ -92,4 +92,11 @@ export default {
     margin-top: 10%;
     margin-left: 6%;
     font-size: x-large;
-}</style>
+}
+
+@media screen and (max-width: 420px) {
+    .deleteDialog {
+        margin-right: 5%;
+    }
+}
+</style>

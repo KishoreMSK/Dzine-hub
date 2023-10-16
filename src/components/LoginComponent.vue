@@ -60,7 +60,7 @@ export default {
         this.toast.success("Login successful", { position: POSITION.BOTTOM_RIGHT, timeout: 2000 })
         this.$router.push('/users')
         sessionStorage.setItem("isAuth", true)
-        this.$store.dispatch('updateAccessToken', response.data.token)
+        // this.$store.dispatch('updateAccessToken', response.data.token)
       }
     },
     errorCallback(e) {

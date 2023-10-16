@@ -165,4 +165,64 @@ export default {
      cursor: pointer;
      font-weight: bold;
  }
-</style>
+
+ @media screen and (max-width: 620px) {
+     .heading {
+         width: 100%;
+         margin-top: 5%;
+     }
+
+     .userBtn {
+         width: 100%;
+         margin-top: 50%;
+         margin-right: 215px;
+         font-size: revert;
+     }
+
+     .flex-item-right {
+         padding: 20px;
+     }
+
+     .container {
+         width: 380px;
+         margin-left: 8%
+     }
+
+     .create-user {
+         margin-left: 100px;
+     }
+ }
+
+ @media screen and (max-width: 420px) {
+     .userBtn {
+         width: 100%;
+         margin-top: 65%;
+         margin-right: 130px;
+         font-size: x-small;
+     }
+
+     .flex-item-left {
+         margin-left: 15%;
+     }
+
+     .dialog-container {
+         margin-right: 5%;
+     }
+
+     .flex-item-right {
+         padding: 20px;
+     }
+
+     .container {
+         width: 380px;
+         margin-left: 8%
+     }
+
+     .create-user {
+         margin-left: 100px;
+     }
+
+     .dialog {
+         margin-right: 12%;
+     }
+ }</style>
