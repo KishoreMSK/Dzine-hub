@@ -61,14 +61,14 @@ export default {
             this.logoutUser = true;
         },
         closeDialog(value) {
-            this.logoutUser = value;
+            this.logoutUser = false;
         },
         handleConfirm(value) {
-            this.logoutUser = value;
+            this.logoutUser = false;
             sessionStorage.clear();
             this.toast.success("Logged out successfully", { position: POSITION.BOTTOM_RIGHT, timeout: 2000 })
             this.$router.push('/')
-        }
+        },
     }
 }
 </script>

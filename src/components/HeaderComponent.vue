@@ -186,15 +186,17 @@ export default {
 
      .container {
          width: 380px;
-         margin-left: 8%
      }
 
      .create-user {
          margin-left: 100px;
      }
+     .dialog {
+         margin-right: 26%;
+     }
  }
 
- @media screen and (max-width: 420px) {
+ @media screen and (max-width: 460px) {
      .userBtn {
          width: 100%;
          margin-top: 65%;
@@ -216,14 +218,10 @@ export default {
 
      .container {
          width: 380px;
-         margin-left: 8%
+         margin-left: 22%
      }
 
      .create-user {
          margin-left: 100px;
-     }
-
-     .dialog {
-         margin-right: 12%;
      }
  }</style>

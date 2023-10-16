@@ -77,6 +77,7 @@
     width: 300px;
     margin: 20px;
     border-radius: 10%;
+    padding-bottom: 15px;
 }
 
 .container {
@@ -163,7 +164,7 @@
     font-weight: b
 }
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 620px) {
     .container {
         width: 365px;
     }
