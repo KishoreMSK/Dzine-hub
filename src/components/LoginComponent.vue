@@ -61,6 +61,7 @@ export default {
       this.loading = false;
       if (response.status === 200) {
         this.toast.success("Login successful", { position: POSITION.BOTTOM_RIGHT, timeout: 2000 })
+        localStorage.setItem("token", response.data.token)
         sessionStorage.setItem("isAuth", true)
         this.$router.push('/users')
       }

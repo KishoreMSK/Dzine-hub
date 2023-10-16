@@ -65,6 +65,7 @@ export default {
         },
         handleConfirm(value) {
             this.logoutUser = false;
+            localStorage.clear();
             sessionStorage.clear();
             this.toast.success("Logged out successfully", { position: POSITION.BOTTOM_RIGHT, timeout: 2000 })
             this.$router.push('/')
